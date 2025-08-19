@@ -81,6 +81,8 @@
 
                 // 建立合約實例，並連接到 Signer (用於發送交易)
                 contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+                // 使用唯讀的 Provider 來呼叫 view 函式
+                readOnlyContract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, provider);
 
                 log(`成功連接！錢包地址: ${await signer.getAddress()}`);
                 
@@ -99,8 +101,7 @@
         // 函式：讀取合約訊息
         async function getMessage() {
             try {
-                // 使用唯讀的 Provider 來呼叫 view 函式
-                const readOnlyContract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, provider);
+                // const readOnlyContract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, provider);
                 const message = await readOnlyContract.message();
                 messageOutput.textContent = `"${message}"`;
                 log("成功讀取當前訊息。");
