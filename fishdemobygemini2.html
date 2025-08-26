@@ -119,8 +119,8 @@ async function setupWeb3() {
             await window.ethereum.request({ method: 'eth_requestAccounts' });
 
             // 步驟二：一旦授權被允許，現在才創建提供者。
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
-            const signer = provider.getSigner();
+            const provider = new ethers.BrowserProvider(window.ethereum);
+            const signer = await provider.getSigner();
 
             return { provider, signer };
         } catch (error) {
