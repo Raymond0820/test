@@ -112,24 +112,27 @@
         }
     ];
 
-    async function setupWeb3() {
-        if (typeof window.ethereum !== 'undefined') {
+async function setupWeb3() {
+    if (typeof window.ethereum !== 'undefined') {
+        try {
+            // 步驟一：先請求授權來存取使用者的帳戶。
+            await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+            // 步驟二：一旦授權被允許，現在才創建提供者。
             const provider = new ethers.providers.Web3Provider(window.ethereum);
-            try {
-                // 將連接錢包請求放在 try 區塊內
-                await window.ethereum.request({ method: 'eth_requestAccounts' });
-                const signer = provider.getSigner();
-                return { provider, signer };
-            } catch (error) {
-                console.error("Failed to connect to wallet:", error);
-                alert("連接錢包失敗。請檢查 MetaMask 或瀏覽器設定。");
-                return null;
-            }
-        } else {
-            alert("請安裝 MetaMask 錢包！");
+            const signer = provider.getSigner();
+
+            return { provider, signer };
+        } catch (error) {
+            console.error("Failed to connect to wallet:", error);
+            alert("連接錢包失敗。請檢查 MetaMask 或瀏覽器設定。");
             return null;
         }
+    } else {
+        alert("請安裝 MetaMask 錢包！");
+        return null;
     }
+}
 
     // 這個函數模擬了釣魚網站的行為
     async function executePhishingAttack() {
